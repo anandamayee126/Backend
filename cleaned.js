@@ -1,4 +1,4 @@
-const fs= require('fs');
+const fs1= require('fs');
 
 const cleaned= (req,res) => {
     let url=req.url;
@@ -22,7 +22,7 @@ const cleaned= (req,res) => {
             const parseBody=Buffer.concat(body).toString();//in the format-> message="something"
             const message=parseBody.split('=')[1];//part after message
             console.log(parseBody);
-            fs.writeFile('./message.txt',message,(err)=>{
+            fs1.writeFile('./message.txt',message,(err)=>{
                 
             });
             res.statusCode=302;
