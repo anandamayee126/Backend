@@ -1,11 +1,11 @@
 const express = require('express');
 const app= express();
-const port=4000;
+const port=5000;
 const bodyParser= require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/add-product',(req, res, next) =>{
-    res.send(`<form action="/product" method="POST"><input type=text name="product" value="product-name"><input type="number name="size" value="size"><button type="submit">Add Product</button></form>`);
+    res.send(`<form action="/product" method="POST"><input type=text name="product" value="product-name"><input type=text name="size" value="size"><button type="submit">Add Product</button></form>`);
 })
 
 app.use('/product',(req, res, next) =>{
