@@ -11,7 +11,7 @@ routes.get('/add-product',(req, res, next) =>
 
 routes.post('/product',(req, res, next) =>{
     console.log(req.body);
-    res.redirect('/');
+    res.redirect('/user');
 })
 
 routes.use((req, res, next) =>{
