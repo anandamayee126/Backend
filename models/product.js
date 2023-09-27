@@ -25,9 +25,9 @@ module.exports = class Product {
     this.price = price;
   }
 
-module.exports=origin,(req,res)=>{
+// module.exports=origin,(req,res)=>{
   
-}
+// }
   save() {
     this.id= Math.random;
     getProductsFromFile(products => {
