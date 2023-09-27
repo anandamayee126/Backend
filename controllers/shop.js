@@ -1,32 +1,43 @@
 const Product = require('../models/product');
-const fs= require('fs');
+
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
+  Product.fetchAll().then(([rows,fieldData]) => {
     res.render('shop/product-list', {
-      prods: products,
+      prods: rows,
       pageTitle: 'All Products',
       path: '/products'
-    });
-  });
+    })
+  })
+    
 };
 
 exports.getProduct= (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, product=>{
-    console.log(product);
+  Product.findById(prodId).then(([product])=>{
+    res.render('shop/product-detail', {
+      prods: product,
+      pageTitle: product.title,
+      path: '/products'
+
   })
-  res.redirect('/');
-}
+  .catch((err)=>{
+    console.log(err);
+  })
+})
+};
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll(products => {
+  Product.fetchAll().then(([rows,fieldData]) => {
     res.render('shop/index', {
-      prods: products,
+      prods: rows,
       pageTitle: 'Shop',
       path: '/'
-    });
-  });
-};
+    })
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+}
 
 exports.getCart = (req, res, next) => {
   res.render('shop/cart', {
@@ -42,6 +53,12 @@ exports.postCart=(req, res, next) => {
 
 exports.deleteProduct=(req, res, next) => {
   const prodId= req.body.productId;
+  Product.deleteById(prodId).then(() => {
+
+  })
+  .catch(err => {
+    console.error(err);
+  })
   
 }
 
